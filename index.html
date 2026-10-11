@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CARZONE</title>
+<link rel="icon" type="image/x-icon" href="./icons/car.png">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="loader">Loading...</div>
+<header>
+  <a class="logo" href="#home">CAR<span>ZONE</span></a>
+  <nav id="nav">
+    <a href="#home">Home</a><a href="#cars">Cars</a><a href="#favorites">Favorites</a><a href="#about">About</a><a href="#contact">Contact</a>
+    <input id="hsearch" type="search" placeholder="Search cars..." aria-label="Search cars">
+  </nav>
+  <div class="icons">
+    <a href="#favorites" aria-label="Favorites">❤️ <span id="favN">0</span></a>
+    <a href="#cart" aria-label="Cart">🛒 <span id="cartN">0</span></a>
+    <button id="theme" aria-label="Toggle theme">🌙</button>
+    <button id="burger" aria-label="Menu">☰</button>
+  </div>
+</header>
+
+<section id="home" class="hero">
+  <div>
+    <h1>FIND YOUR<br>DREAM CAR</h1>
+    <p>Find the perfect car for your lifestyle.</p>
+    <a class="btn" href="#cars">EXPLORE CARS</a>
+  </div>
+  <img id="heroImg" alt="Featured car">
+</section>
+
+<section id="cars" class="rv">
+  <h2>Cars</h2>
+  <div class="filters">
+    <label>Brand<select id="fBrand"><option>All</option><option>BMW</option><option>Mercedes</option><option>Toyota</option><option>Audi</option><option>Tesla</option></select></label>
+    <label>Fuel<select id="fFuel"><option>All</option><option>Petrol</option><option>Diesel</option><option>Hybrid</option><option>Electric</option></select></label>
+    <label>Transmission<select id="fTr"><option>All</option><option>Automatic</option><option>Manual</option></select></label>
+    <label>Min Price<input id="fMin" type="number" min="0" placeholder="Min Price"></label>
+    <label>Max Price<input id="fMax" type="number" min="0" placeholder="Max Price"></label>
+    <label>Sort By<select id="fSort"><option value="default">Default</option><option value="p1">Price: Low → High</option><option value="p2">Price: High → Low</option><option value="n1">Name: A → Z</option><option value="n2">Name: Z → A</option><option value="y1">Year: Newest</option><option value="y2">Year: Oldest</option></select></label>
+    <label>$10,000 – <span id="rangeV">$150,000</span><input id="fRange" type="range" min="10000" max="150000" step="1000" value="150000"></label>
+    <button class="reset" id="reset">RESET FILTERS</button>
+  </div>
+  <div id="cmpbar"></div>
+  <div class="grid" id="grid"></div>
+  <div class="pager" id="pager"></div>
+</section>
+
+<section id="favorites" class="rv">
+  <h2>Favorites</h2>
+  <div class="grid" id="favGrid"></div>
+</section>
+
+<section id="cart" class="rv">
+  <h2>Cart</h2>
+  <div class="cartwrap">
+    <div class="box" id="cartList"></div>
+    <div class="box">
+      <div class="tot" id="totals"></div>
+      <label style="font-size:.85rem;color:var(--mut)">Enter Coupon</label>
+      <div class="cp"><input id="coupon" placeholder="CAR10"><button class="btn2" id="applyCp">Apply</button></div>
+      <p class="err" id="cpMsg"></p>
+      <h3 style="margin:10px 0">Checkout</h3>
+      <form id="checkout" novalidate>
+        <label>Name<input id="co-name"><span class="err" id="e-co-name"></span></label>
+        <label>Email<input id="co-email" type="email"><span class="err" id="e-co-email"></span></label>
+        <label>Phone<input id="co-phone"><span class="err" id="e-co-phone"></span></label>
+        <label>Address<input id="co-addr"><span class="err" id="e-co-addr"></span></label>
+        <label>Card Number<input id="co-card" inputmode="numeric"><span class="err" id="e-co-card"></span></label>
+        <button class="btn2">PLACE ORDER</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<section id="add" class="rv">
+  <h2>Add New Car</h2>
+  <div class="box">
+    <form id="addForm" class="two" novalidate>
+      <label>Brand<input id="ac-brand"><span class="err" id="e-ac-brand"></span></label>
+      <label>Model<input id="ac-model"><span class="err" id="e-ac-model"></span></label>
+      <label>Year<input id="ac-year" type="number"><span class="err" id="e-ac-year"></span></label>
+      <label>Price<input id="ac-price" type="number"><span class="err" id="e-ac-price"></span></label>
+      <label>Fuel<select id="ac-fuel"><option>Petrol</option><option>Diesel</option><option>Hybrid</option><option>Electric</option></select></label>
+      <label>Transmission<select id="ac-tr"><option>Automatic</option><option>Manual</option></select></label>
+      <label>MyAuto link (optional)<input id="ac-link" placeholder="https://www.myauto.ge/..."></label>
+      <button type="button" class="btn2" id="fetchPhotos" style="align-self:end">Get photos from link</button>
+      <p id="fetchMsg" style="grid-column:1/-1;font-size:.85rem"></p>
+      <label>Image URLs (one per line)<textarea id="ac-img" rows="3" placeholder="https://.../photo1.jpg&#10;https://.../photo2.jpg&#10;images/my-car.jpg"></textarea><span class="err" id="e-ac-img"></span></label>
+      <button class="btn2" style="align-self:center">ADD CAR</button>
+    </form>
+  </div>
+</section>
+
+<section id="about" class="rv">
+  <h2>WHY CARZONE?</h2>
+  <div class="why"><div>✓ 500+ Cars</div><div>✓ Trusted Sellers</div><div>✓ Secure Purchase</div><div>✓ Fast Support</div></div>
+  <div class="stats">
+    <div><b data-n="500" data-p="+">0</b>Cars</div>
+    <div><b data-n="1200" data-p="+">0</b>Customers</div>
+    <div><b data-n="15">0</b>Brands</div>
+  </div>
+</section>
+
+<section id="contact" class="rv">
+  <h2>Contact</h2>
+  <div class="box">
+    <form id="contactForm" novalidate>
+      <label>Name<input id="ct-name"><span class="err" id="e-ct-name"></span></label>
+      <label>Email<input id="ct-email" type="email"><span class="err" id="e-ct-email"></span></label>
+      <label>Message<textarea id="ct-msg" rows="4"></textarea><span class="err" id="e-ct-msg"></span></label>
+      <button class="btn2">Send Message</button>
+      <p class="ok" id="ctOk"></p>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="logo" style="color:#fff">CAR<span>ZONE</span></div>
+  <div class="links"><a href="#home">Home</a><a href="#cars">Cars</a><a href="#favorites">Favorites</a><a href="#about">About</a><a href="#contact">Contact</a></div>
+  <div class="links"><a href="#">Facebook</a><a href="#">Instagram</a><a href="#">YouTube</a></div>
+  <p id="copy"></p>
+</footer>
+
+<div id="modal"><div class="mbox"><button class="x" data-a="close" aria-label="Close">✕</button><div id="mbody"></div></div></div>
+<div id="toasts"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
